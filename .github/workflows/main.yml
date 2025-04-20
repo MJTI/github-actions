@@ -16,6 +16,10 @@ jobs:
       run: mvn test
     - name: checkstyle test
       run: mvn checkstyle:checkstyle
+    - name: Set current date as env variable
+      run: echo ${{ github.event.repository.updated_at}}
+    - name: check the date
+      run: echo ${{ github.event.repository.updated_at}} | sed 's/:/./g'
     - name: upload reports to sonar
       uses: SonarSource/sonarqube-scan-action@v4.2.1
       env:
@@ -28,6 +32,7 @@ jobs:
           -Dsonar.host.url=${{ env.SONAR_URL }}
           -Dsonar.projectKey=${{ env.PROJECT_KEY }}
           -Dsonar.organization=${{ env.ORG_KEY }}
+          -Dsonar.projectVersion=${{ github.event.repository.updated_at}}
           -Dsonar.java.binaries=target/classes/com/
           -Dsonar.junit.reportsPath=target/surefire-reports/
           -Dsonar.jacoco.reportsPath=target/jacoco.exec
