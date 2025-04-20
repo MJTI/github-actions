@@ -6,3 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: ls -lha
+      - run: whoami
+      - run: ls -lha /
+
