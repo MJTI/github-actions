@@ -41,7 +41,7 @@ jobs:
         SONAR_HOST_URL: ${{ vars.SONAR_URL }}
 
     - name: build and push image to AWS ECR
-      uses: kciter/aws-ecr-action@v3
+      uses: kciter/aws-ecr-action@master
       with:
         access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
