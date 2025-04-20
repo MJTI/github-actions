@@ -5,7 +5,8 @@ jobs:
   build_and_test:
     runs-on: ubuntu-latest
     steps:
-      - run: ls -lha
-      - run: whoami
-      - run: ls -lha /
+    - name: checkout repo
+      uses: actions/checkout@v4
+    - name: testing
+      run: ls -lha
 
