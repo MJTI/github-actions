@@ -49,6 +49,8 @@ jobs:
         repo: ${{ vars.ECR_REPOSITORY }}
         region: ${{ vars.AWS_REGION }}
         tags: latest,${{ GITHUB_RUN_NUMBER }}
+    
+    ## add updating the image in the AWS ECS service
 
 
 
