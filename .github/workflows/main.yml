@@ -9,4 +9,17 @@ jobs:
       uses: actions/checkout@v4
     - name: unit test
       run: mvn test
+    - name: checkstyle test
+      run: mvn checkstyle:checkstyle
+  upload_reports_sonar:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ secrets.ORG_KEY }}
+      - run: echo ${{ env.SONAR_URL }}
+      - name: test with env
+        env:
+          super: echo ${{ secrets.ORG_KEY }}
+        run: echo "$super"
+
+
 
