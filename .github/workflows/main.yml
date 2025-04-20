@@ -28,7 +28,7 @@ jobs:
           -Dsonar.host.url=${{ env.SONAR_URL }}
           -Dsonar.projectKey=${{ env.PROJECT_KEY }}
           -Dsonar.organization=${{ env.ORG_KEY }}
-          -Dsonar.java.sources=src/main/java
+          -Dsonar.java.binaries=target/classes/com/
           -Dsonar.junit.reportsPath=target/surefire-reports/
           -Dsonar.jacoco.reportsPath=target/jacoco.exec
           -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
