@@ -14,12 +14,9 @@ jobs:
   upload_reports_sonar:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ secrets.ORG_KEY }}
-      - run: echo ${{ env.SONAR_URL }}
-      - name: test with env
-        env:
-          super: echo ${{ secrets.ORG_KEY }}
-        run: echo "$super"
+    - name: test java 
+      run: java -version
+
 
 
 
