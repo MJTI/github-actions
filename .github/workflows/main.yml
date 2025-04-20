@@ -27,7 +27,7 @@ jobs:
         args: >
           -Dsonar.projectKey=${{ env.PROJECT_KEY }}
           -Dsonar.organization=${{ env.ORG_KEY }}
-          -Dsonar.projectVersion=${{ github.event.repository.updated_at}} | sed 's/:/./g'
+          -Dsonar.projectVersion=${{ github.event.repository.updated_at}}
           -Dsonar.java.binaries=target/classes/com/
           -Dsonar.junit.reportsPath=target/surefire-reports/
           -Dsonar.jacoco.reportsPath=target/jacoco.exec
