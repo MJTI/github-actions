@@ -40,8 +40,15 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ vars.SONAR_URL }}
 
-    
-    ## add building the image in docker step and push to AWS ECR
+    - name: build and push image to AWS ECR
+      uses: docker://ghcr.io/kciter/aws-ecr-action:latest
+      with:
+        access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        account_id: ${{ secrets.AWS_ACCOUNT_ID }}
+        repo: ${{ vars.ECR_REPOSITORY }}
+        region: ${{ vars.AWS_REGION }}
+        tags: latest,${{ GITHUB_RUN_NUMBER }}
 
 
 
