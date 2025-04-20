@@ -20,9 +20,9 @@ jobs:
       uses: SonarSource/sonarqube-scan-action@v4.2.1
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ vars.SONAR_URL }}
         ORG_KEY: ${{ secrets.ORG_KEY }}
         PROJECT_KEY: ${{ secrets.PROJECT_KEY }}
-        SONAR_HOST_URL: ${{ vars.SONAR_URL }}
       with:
         args: >
           -Dsonar.projectKey=${{ env.PROJECT_KEY }}
@@ -32,6 +32,19 @@ jobs:
           -Dsonar.junit.reportsPath=target/surefire-reports/
           -Dsonar.jacoco.reportsPath=target/jacoco.exec
           -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
+    - name: SonarQube Quality Gate check
+      id: sonarqube-quality-gate-check
+      uses: sonarsource/sonarqube-quality-gate-action@master
+      with:
+        pollingTimeoutSec: 600
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ vars.SONAR_URL }} #OPTIONAL
+
+      # Optionally you can use the output from the Quality Gate in another step.
+      # The possible outputs of the `quality-gate-status` variable are `PASSED`, `WARN` or `FAILED`.
+    - name: Quality Gate Status
+      run: echo "The Quality Gate status is ${{ steps.sonarqube-quality-gate-check.outputs.quality-gate-status }}"
 
 
 
