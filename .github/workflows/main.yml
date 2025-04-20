@@ -40,6 +40,9 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ vars.SONAR_URL }}
 
+    
+    ## add building the image in docker step and push to AWS ECR
+
 
 
 
