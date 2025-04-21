@@ -61,18 +61,18 @@ jobs:
 
     - name: Login to Amazon ECR
       id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
+      uses: aws-actions/amazon-ecr-login@v2
     
     - name: Download task definition 
       run: |
-       aws ecs describe-task-definition - task-definition etap-development - query taskDefinition > task-definition.json
+       aws ecs describe-task-definition --task-definition stage_cluster:3 - query taskDefinition > task-definition.json
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1 
       with:
        task-definition: task-definition.json
-       service: admin-backend
-       cluster: dev-env
+       service: stage-service
+       cluster: stage-mjti
 
 
 
