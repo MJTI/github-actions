@@ -1,4 +1,4 @@
-name: CICD
+name: CI/CD Pipeline for Spring Boot App
 on:
   push:
     branches:
